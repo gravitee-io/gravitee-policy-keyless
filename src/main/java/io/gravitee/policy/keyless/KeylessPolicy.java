@@ -15,6 +15,7 @@
  */
 package io.gravitee.policy.keyless;
 
+import io.gravitee.common.util.Reporting;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
@@ -30,7 +31,7 @@ public class KeylessPolicy {
     /**
      * Code for a key-less call (no application / subscription required)
      */
-    static final String APPLICATION_NAME_ANONYMOUS = "1";
+    static final String APPLICATION_NAME_ANONYMOUS = Reporting.UNKNOWN_SERVICE;
 
     @OnRequest
     public void onRequest(Request request, Response response, ExecutionContext executionContext, PolicyChain policyChain) {
