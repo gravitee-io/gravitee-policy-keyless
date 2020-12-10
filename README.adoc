@@ -1,4 +1,4 @@
-= Keyless Policy
+= Keyless policy
 
 ifdef::env-github[]
 image:https://ci.gravitee.io/buildStatus/icon?job=gravitee-io/gravitee-policy-keyless/master["Build status", link="https://ci.gravitee.io/job/gravitee-io/job/gravitee-policy-keyless/"]
@@ -20,5 +20,6 @@ endif::[]
 == Description
 
 
-== Http Status Code
+== Errors
 
+=== HTTP status code
