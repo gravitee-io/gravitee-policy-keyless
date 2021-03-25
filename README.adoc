@@ -19,7 +19,8 @@ endif::[]
 
 == Description
 
+You can use a `key-less` policy to allow calls to your API with no application or subscription.
 
-== Errors
+=== Policy identifier
 
-=== HTTP status code
+You can enable or disable the policy with policy identifier `key-less`.
