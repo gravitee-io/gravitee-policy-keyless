@@ -15,27 +15,50 @@
  */
 package io.gravitee.policy.keyless;
 
-import io.gravitee.gateway.api.ExecutionContext;
-import io.gravitee.gateway.api.Request;
-import io.gravitee.gateway.api.Response;
-import io.gravitee.policy.api.PolicyChain;
-import io.gravitee.policy.api.annotations.OnRequest;
+import static io.gravitee.gateway.reactive.api.context.ExecutionContext.ATTR_APPLICATION;
+import static io.gravitee.gateway.reactive.api.context.ExecutionContext.ATTR_SUBSCRIPTION_ID;
+
+import io.gravitee.gateway.reactive.api.context.RequestExecutionContext;
+import io.gravitee.gateway.reactive.api.policy.SecurityPolicy;
+import io.gravitee.policy.v3.keyless.KeylessPolicyV3;
+import io.reactivex.Completable;
+import io.reactivex.Single;
 
 /**
- * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public class KeylessPolicy {
+public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
 
-    /**
-     * Code for a key-less call (no application / subscription required)
-     */
-    static final String APPLICATION_NAME_ANONYMOUS = "1";
+    private static final Single<Boolean> TRUE = Single.just(true);
 
-    @OnRequest
-    public void onRequest(Request request, Response response, ExecutionContext executionContext, PolicyChain policyChain) {
-        executionContext.setAttribute(ExecutionContext.ATTR_APPLICATION, APPLICATION_NAME_ANONYMOUS);
-        executionContext.setAttribute(ExecutionContext.ATTR_SUBSCRIPTION_ID, request.remoteAddress());
-        policyChain.doNext(request, response);
+    @Override
+    public String id() {
+        return "keyless";
+    }
+
+    @Override
+    public int order() {
+        return 1000;
+    }
+
+    @Override
+    public boolean requireSubscription() {
+        return false;
+    }
+
+    @Override
+    public Single<Boolean> support(RequestExecutionContext ctx) {
+        return TRUE;
+    }
+
+    @Override
+    public Completable onRequest(RequestExecutionContext ctx) {
+        return Completable.fromRunnable(
+            () -> {
+                ctx.setAttribute(ATTR_APPLICATION, APPLICATION_NAME_ANONYMOUS);
+                ctx.setAttribute(ATTR_SUBSCRIPTION_ID, ctx.request().remoteAddress());
+            }
+        );
     }
 }
