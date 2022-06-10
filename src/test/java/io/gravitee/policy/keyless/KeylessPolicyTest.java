@@ -15,15 +15,15 @@
  */
 package io.gravitee.policy.keyless;
 
-import static io.gravitee.gateway.reactive.api.context.ExecutionContext.ATTR_APPLICATION;
-import static io.gravitee.gateway.reactive.api.context.ExecutionContext.ATTR_SUBSCRIPTION_ID;
+import static io.gravitee.gateway.jupiter.api.context.ExecutionContext.ATTR_APPLICATION;
+import static io.gravitee.gateway.jupiter.api.context.ExecutionContext.ATTR_SUBSCRIPTION_ID;
 import static io.gravitee.policy.v3.keyless.KeylessPolicyV3.APPLICATION_NAME_ANONYMOUS;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import io.gravitee.gateway.reactive.api.context.Request;
-import io.gravitee.gateway.reactive.api.context.RequestExecutionContext;
+import io.gravitee.gateway.jupiter.api.context.Request;
+import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.reactivex.observers.TestObserver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
