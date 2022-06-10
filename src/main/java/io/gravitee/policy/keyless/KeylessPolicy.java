@@ -15,11 +15,11 @@
  */
 package io.gravitee.policy.keyless;
 
-import static io.gravitee.gateway.reactive.api.context.ExecutionContext.ATTR_APPLICATION;
-import static io.gravitee.gateway.reactive.api.context.ExecutionContext.ATTR_SUBSCRIPTION_ID;
+import static io.gravitee.gateway.jupiter.api.context.ExecutionContext.ATTR_APPLICATION;
+import static io.gravitee.gateway.jupiter.api.context.ExecutionContext.ATTR_SUBSCRIPTION_ID;
 
-import io.gravitee.gateway.reactive.api.context.RequestExecutionContext;
-import io.gravitee.gateway.reactive.api.policy.SecurityPolicy;
+import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
+import io.gravitee.gateway.jupiter.api.policy.SecurityPolicy;
 import io.gravitee.policy.v3.keyless.KeylessPolicyV3;
 import io.reactivex.Completable;
 import io.reactivex.Single;
