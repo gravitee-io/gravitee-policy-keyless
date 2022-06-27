@@ -21,7 +21,13 @@ endif::[]
 
 == Description
 
+This security policy does not block any requests as it considers them as valid by default.
+
+It sets multiple attributes during policy execution, as follows:
+
+* `application`: Anonymous application value, which is equal to `1`.
+* `user-id`: Internet Protocol (IP) address of the client or last proxy that sent the request.
 
 == Errors
 
-=== HTTP status code
+This policy cannot fail as it does not carry out any validation.
