@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.5.0...1.5.1) (2022-06-27)
+
+
+### Bug Fixes
+
+* add a simple description to this policy ([5fea309](https://github.com/gravitee-io/gravitee-policy-keyless/commit/5fea30917991bf6d86067fa60ffed9ee24a5f879))
+
 # [1.5.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.4.0...1.5.0) (2022-06-10)
 
 
