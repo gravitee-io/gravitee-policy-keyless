@@ -35,9 +35,10 @@
 
     <properties>
         <gravitee-bom.version>2.6</gravitee-bom.version>
-        <gravitee-gateway-api.version>1.38.0</gravitee-gateway-api.version>
+        <gravitee-gateway-api.version>1.39.0</gravitee-gateway-api.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-common.version>1.27.0</gravitee-common.version>
+        <gravitee-apim-gateway-tests-sdk.version>3.19.0-SNAPSHOT</gravitee-apim-gateway-tests-sdk.version>
 
         <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
         <!-- Property used by the publication job in CI-->
@@ -100,6 +101,12 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.gravitee.apim.gateway</groupId>
+            <artifactId>gravitee-apim-gateway-tests-sdk</artifactId>
+            <version>${gravitee-apim-gateway-tests-sdk.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
