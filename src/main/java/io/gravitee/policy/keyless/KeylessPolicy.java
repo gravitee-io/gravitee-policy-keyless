@@ -22,17 +22,16 @@ import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.gravitee.gateway.jupiter.api.policy.SecurityPolicy;
+import io.gravitee.gateway.jupiter.api.policy.SecurityToken;
 import io.gravitee.policy.v3.keyless.KeylessPolicyV3;
 import io.reactivex.Completable;
-import io.reactivex.Single;
+import io.reactivex.Maybe;
 
 /**
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
 public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
-
-    private static final Single<Boolean> TRUE = Single.just(true);
 
     @Override
     public String id() {
@@ -50,8 +49,8 @@ public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
     }
 
     @Override
-    public Single<Boolean> support(HttpExecutionContext ctx) {
-        return TRUE;
+    public Maybe<SecurityToken> extractSecurityToken(HttpExecutionContext ctx) {
+        return Maybe.just(SecurityToken.none());
     }
 
     @Override
