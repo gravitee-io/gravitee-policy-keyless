@@ -18,6 +18,8 @@ package io.gravitee.policy.keyless;
 import static io.gravitee.gateway.jupiter.api.context.ExecutionContext.ATTR_APPLICATION;
 import static io.gravitee.gateway.jupiter.api.context.ExecutionContext.ATTR_SUBSCRIPTION_ID;
 
+import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
+import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.gravitee.gateway.jupiter.api.policy.SecurityPolicy;
 import io.gravitee.policy.v3.keyless.KeylessPolicyV3;
@@ -48,12 +50,21 @@ public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
     }
 
     @Override
-    public Single<Boolean> support(RequestExecutionContext ctx) {
+    public Single<Boolean> support(HttpExecutionContext ctx) {
         return TRUE;
     }
 
     @Override
     public Completable onRequest(RequestExecutionContext ctx) {
+        return handleSecurity(ctx);
+    }
+
+    @Override
+    public Completable onMessageRequest(final MessageExecutionContext ctx) {
+        return handleSecurity(ctx);
+    }
+
+    private Completable handleSecurity(final HttpExecutionContext ctx) {
         return Completable.fromRunnable(
             () -> {
                 ctx.setAttribute(ATTR_APPLICATION, APPLICATION_NAME_ANONYMOUS);
