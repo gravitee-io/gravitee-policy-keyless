@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.6.0...1.6.1) (2022-08-08)
+
+
+### Bug Fixes
+
+* remove snapshot for release ([fd3825c](https://github.com/gravitee-io/gravitee-policy-keyless/commit/fd3825cf45f1c6e11bfb88470251e9e273238654))
+
 # [1.6.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.5.1...1.6.0) (2022-08-08)
 
 
