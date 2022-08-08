@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.5.1...1.6.0) (2022-08-08)
+
+
+### Features
+
+* **sme:** update security policy to be compatible with async reactor ([c5398a6](https://github.com/gravitee-io/gravitee-policy-keyless/commit/c5398a6cdcab3a35f9e96b08fcb34dd3838e5fe2))
+
 ## [1.5.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.5.0...1.5.1) (2022-06-27)
 
 
