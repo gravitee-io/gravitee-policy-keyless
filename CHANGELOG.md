@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.6.1...1.7.0) (2022-08-16)
+
+
+### Features
+
+* migrate to the new version of Jupiter's SecurityPolicy ([61fe507](https://github.com/gravitee-io/gravitee-policy-keyless/commit/61fe5071fcc7192aa57f904c57487de105218e90))
+
 ## [1.6.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.6.0...1.6.1) (2022-08-08)
 
 
