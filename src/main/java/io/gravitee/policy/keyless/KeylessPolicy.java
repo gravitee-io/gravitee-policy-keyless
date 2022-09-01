@@ -20,7 +20,6 @@ import static io.gravitee.gateway.jupiter.api.context.ExecutionContext.ATTR_SUBS
 
 import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
-import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.gravitee.gateway.jupiter.api.policy.SecurityPolicy;
 import io.gravitee.gateway.jupiter.api.policy.SecurityToken;
 import io.gravitee.policy.v3.keyless.KeylessPolicyV3;
@@ -54,12 +53,7 @@ public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
     }
 
     @Override
-    public Completable onRequest(RequestExecutionContext ctx) {
-        return handleSecurity(ctx);
-    }
-
-    @Override
-    public Completable onMessageRequest(final MessageExecutionContext ctx) {
+    public Completable onRequest(HttpExecutionContext ctx) {
         return handleSecurity(ctx);
     }
 
