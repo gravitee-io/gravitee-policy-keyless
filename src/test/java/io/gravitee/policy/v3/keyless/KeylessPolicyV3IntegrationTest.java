@@ -24,11 +24,11 @@ import org.junit.jupiter.api.Disabled;
 /**
  * @author GraviteeSource Team
  */
-@Disabled("Temporary disabled to make build pass and waiting for a new version of tests-sdk")
 public class KeylessPolicyV3IntegrationTest extends KeylessPolicyIntegrationTest {
 
     @Override
     protected void configureGateway(GatewayConfigurationBuilder gatewayConfigurationBuilder) {
+        super.configureGateway(gatewayConfigurationBuilder);
         gatewayConfigurationBuilder.set("api.jupiterMode.enabled", "false");
     }
 

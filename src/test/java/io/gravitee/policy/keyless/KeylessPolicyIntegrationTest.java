@@ -40,7 +40,6 @@ import org.junit.jupiter.api.Test;
  */
 @GatewayTest
 @DeployApi("/apis/keyless.json")
-@Disabled("Temporary disabled to make build pass and waiting for a new version of tests-sdk")
 public class KeylessPolicyIntegrationTest extends AbstractPolicyTest<KeylessPolicy, PolicyConfiguration> {
 
     @Override
