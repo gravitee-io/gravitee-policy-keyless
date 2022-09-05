@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.7.0...1.8.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* plan selection for v3 engine ([a870e67](https://github.com/gravitee-io/gravitee-policy-keyless/commit/a870e67a510c51788be3e54bd45a142c730519e1))
+
+
+### Features
+
+* improve execution context structure ([8258aeb](https://github.com/gravitee-io/gravitee-policy-keyless/commit/8258aebe29fb9d7a095962bf155fdb9e3826a331)), closes [gravitee-io/issues#8386](https://github.com/gravitee-io/issues/issues/8386)
+
 # [1.7.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.6.1...1.7.0) (2022-08-16)
 
 
