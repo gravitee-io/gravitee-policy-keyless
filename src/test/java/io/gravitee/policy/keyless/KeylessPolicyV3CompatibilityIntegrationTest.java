@@ -16,25 +16,16 @@
 package io.gravitee.policy.keyless;
 
 import io.gravitee.apim.gateway.tests.sdk.configuration.GatewayConfigurationBuilder;
-import io.gravitee.definition.model.Api;
-import io.gravitee.definition.model.ExecutionMode;
-import org.junit.jupiter.api.Disabled;
+import io.gravitee.policy.v3.keyless.KeylessPolicyV3IntegrationTest;
 
 /**
  * @author GraviteeSource Team
  */
-@Disabled("Temporary disabled to make build pass and waiting for a new version of tests-sdk")
-public class KeylessPolicyV3CompatibilityIntegrationTest extends KeylessPolicyIntegrationTest {
+public class KeylessPolicyV3CompatibilityIntegrationTest extends KeylessPolicyV3IntegrationTest {
 
     @Override
     protected void configureGateway(GatewayConfigurationBuilder gatewayConfigurationBuilder) {
         super.configureGateway(gatewayConfigurationBuilder);
         gatewayConfigurationBuilder.set("api.jupiterMode.enabled", "true");
-    }
-
-    @Override
-    public void configureApi(Api api) {
-        super.configureApi(api);
-        api.setExecutionMode(ExecutionMode.V3);
     }
 }
