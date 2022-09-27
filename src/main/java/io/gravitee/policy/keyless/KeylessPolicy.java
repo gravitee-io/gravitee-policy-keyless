@@ -15,6 +15,8 @@
  */
 package io.gravitee.policy.keyless;
 
+import static io.gravitee.gateway.jupiter.api.context.InternalContextAttributes.ATTR_INTERNAL_SECURITY_TOKEN;
+
 import io.gravitee.gateway.jupiter.api.context.ContextAttributes;
 import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.policy.SecurityPolicy;
@@ -46,7 +48,13 @@ public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
 
     @Override
     public Maybe<SecurityToken> extractSecurityToken(HttpExecutionContext ctx) {
-        return Maybe.just(SecurityToken.none());
+        // This token is present in internal attributes if a previous SecurityPolicy has extracted a SecurityToken
+        final SecurityToken securityToken = ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN);
+        // If it is present with a type different from NONE, then we should not execute this KeylessPlan.
+        // Indeed, it means that a request was attempted with an authentication purpose, so we should not let it pass.
+        return securityToken != null && !SecurityToken.TokenType.NONE.name().equals(securityToken.getTokenType())
+            ? Maybe.empty()
+            : Maybe.just(SecurityToken.none());
     }
 
     @Override

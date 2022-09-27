@@ -15,6 +15,7 @@
  */
 package io.gravitee.policy.keyless;
 
+import static io.gravitee.gateway.jupiter.api.context.InternalContextAttributes.ATTR_INTERNAL_SECURITY_TOKEN;
 import static io.gravitee.gateway.jupiter.api.policy.SecurityToken.TokenType.NONE;
 import static io.gravitee.policy.v3.keyless.KeylessPolicyV3.APPLICATION_NAME_ANONYMOUS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,8 +29,11 @@ import io.gravitee.gateway.jupiter.api.context.Request;
 import io.gravitee.gateway.jupiter.api.policy.SecurityToken;
 import io.reactivex.observers.TestObserver;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -69,10 +73,32 @@ class KeylessPolicyTest {
     }
 
     @Test
-    void shouldAlwaysReturnEmptySecurityToken() {
+    @DisplayName("Should return a SecurityToken.none() if no SecurityToken was extracted from a previous plan")
+    void shouldReturnNoneTypedSecurityTokenWhenNoSecurityTokenInInternalAttributes() {
         final TestObserver<SecurityToken> obs = cut.extractSecurityToken(ctx).test();
 
         obs.assertValue(token -> token.getTokenType().equals(NONE.name()));
+    }
+
+    @Test
+    @DisplayName(
+        "Should return a SecurityToken.none() if no SecurityToken with a type different from NONE was extracted from a previous plan"
+    )
+    void shouldReturnNoneTypedSecurityTokenWhenNoneTypedSecurityTokenInInternalAttributes() {
+        when(ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN)).thenReturn(SecurityToken.none());
+        final TestObserver<SecurityToken> obs = cut.extractSecurityToken(ctx).test();
+
+        obs.assertValue(token -> token.getTokenType().equals(NONE.name()));
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = SecurityToken.TokenType.class, names = { "CLIENT_ID", "API_KEY" })
+    @DisplayName("Should return an empty Maybe if there was a SecurityToken extracted by the previous plan")
+    void shouldReturnAnEmptyWhenExtractingSecurityToken(SecurityToken.TokenType type) {
+        when(ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN)).thenReturn(new SecurityToken(type, "tokenValue"));
+        final TestObserver<SecurityToken> obs = cut.extractSecurityToken(ctx).test();
+
+        obs.assertNoValues();
     }
 
     @Test
