@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.8.0...1.8.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* take care of previously extracted SecurityToken ([7cf10a4](https://github.com/gravitee-io/gravitee-policy-keyless/commit/7cf10a4c2261ea720846cbbd24ba783ecc98204e))
+
 # [1.8.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.7.0...1.8.0) (2022-09-05)
 
 
