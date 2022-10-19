@@ -16,6 +16,7 @@
 package io.gravitee.policy.keyless;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static io.vertx.core.http.HttpMethod.GET;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import io.gravitee.apim.gateway.tests.sdk.AbstractPolicyTest;
@@ -26,12 +27,12 @@ import io.gravitee.definition.model.Api;
 import io.gravitee.definition.model.ExecutionMode;
 import io.gravitee.definition.model.Plan;
 import io.gravitee.policy.api.PolicyConfiguration;
-import io.reactivex.observers.TestObserver;
-import io.vertx.reactivex.core.buffer.Buffer;
-import io.vertx.reactivex.ext.web.client.HttpResponse;
-import io.vertx.reactivex.ext.web.client.WebClient;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.observers.TestObserver;
+import io.vertx.rxjava3.core.http.HttpClient;
+import io.vertx.rxjava3.core.http.HttpClientRequest;
+import io.vertx.rxjava3.core.http.HttpClientResponse;
 import java.util.Collections;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -65,21 +66,27 @@ public class KeylessPolicyIntegrationTest extends AbstractPolicyTest<KeylessPoli
 
     @Test
     @DisplayName("Should access API")
-    void shouldAccessApi(WebClient client) {
+    void shouldAccessApi(HttpClient client) throws InterruptedException {
         wiremock.stubFor(get("/team").willReturn(ok("response from backend")));
 
-        final TestObserver<HttpResponse<Buffer>> obs = client.get("/test").rxSend().test();
-
-        awaitTerminalEvent(obs)
-            .assertComplete()
-            .assertValue(
+        client
+            .rxRequest(GET, "/test")
+            .flatMap(HttpClientRequest::rxSend)
+            .flatMapPublisher(
                 response -> {
                     assertThat(response.statusCode()).isEqualTo(200);
-                    assertThat(response.bodyAsString()).isEqualTo("response from backend");
-                    return true;
+                    return response.toFlowable();
                 }
             )
-            .assertNoErrors();
+            .test()
+            .await()
+            .assertComplete()
+            .assertValue(
+                body -> {
+                    assertThat(body.toString()).isEqualTo("response from backend");
+                    return true;
+                }
+            );
 
         wiremock.verify(1, getRequestedFor(urlPathEqualTo("/team")));
     }
