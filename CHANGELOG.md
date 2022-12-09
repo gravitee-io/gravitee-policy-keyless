@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.8.1...2.0.0) (2022-12-09)
+
+
+### chore
+
+* bump to rxJava3 ([2d9701d](https://github.com/gravitee-io/gravitee-policy-keyless/commit/2d9701d901eb3160ee0bf1fa2f930cfeae459836))
+
+
+### BREAKING CHANGES
+
+* rxJava3 required
+
 # [2.0.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/1.8.1...2.0.0-alpha.1) (2022-10-19)
 
 
