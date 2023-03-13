@@ -1,3 +1,10 @@
+# [2.1.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.0.1-alpha.1...2.1.0-alpha.1) (2023-03-13)
+
+
+### Features
+
+* rename 'jupiter' package in 'reactive' ([481e3b6](https://github.com/gravitee-io/gravitee-policy-keyless/commit/481e3b6a58dd5d6c54c361654d0723836bccd35e))
+
 ## [2.0.1-alpha.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.0.0...2.0.1-alpha.1) (2023-02-02)
 
 
