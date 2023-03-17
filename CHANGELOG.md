@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.0.0...2.1.0) (2023-03-17)
+
+
+### Bug Fixes
+
+* bump gateway api version ([d8aa5cf](https://github.com/gravitee-io/gravitee-policy-keyless/commit/d8aa5cf8af26d3ea52bdd7e2d149a7dfa3926f17))
+* **deps:** upgrade gravitee-bom & alpha version ([f2f5660](https://github.com/gravitee-io/gravitee-policy-keyless/commit/f2f5660a50e7d89f3cd5a0e5c23e5f440f8e92b9))
+
+
+### Features
+
+* rename 'jupiter' package in 'reactive' ([b0efe03](https://github.com/gravitee-io/gravitee-policy-keyless/commit/b0efe03ff757e46c48d949041bf88808e06a0112))
+
 # [2.1.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.0.1-alpha.1...2.1.0-alpha.1) (2023-03-13)
 
 
