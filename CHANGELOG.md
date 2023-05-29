@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.1.0...2.2.0) (2023-05-29)
+
+
+### Features
+
+* provide execution phase in manifest ([d32c183](https://github.com/gravitee-io/gravitee-policy-keyless/commit/d32c1839121718bcd0b0525e51df9ebfc058ae07))
+
 # [2.1.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.0.0...2.1.0) (2023-03-17)
 
 
