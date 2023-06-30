@@ -63,11 +63,9 @@ public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
     }
 
     private Completable handleSecurity(final HttpExecutionContext ctx) {
-        return Completable.fromRunnable(
-            () -> {
-                ctx.setAttribute(ContextAttributes.ATTR_APPLICATION, APPLICATION_NAME_ANONYMOUS);
-                ctx.setAttribute(ContextAttributes.ATTR_SUBSCRIPTION_ID, ctx.request().remoteAddress());
-            }
-        );
+        return Completable.fromRunnable(() -> {
+            ctx.setAttribute(ContextAttributes.ATTR_APPLICATION, APPLICATION_NAME_ANONYMOUS);
+            ctx.setAttribute(ContextAttributes.ATTR_SUBSCRIPTION_ID, ctx.request().remoteAddress());
+        });
     }
 }
