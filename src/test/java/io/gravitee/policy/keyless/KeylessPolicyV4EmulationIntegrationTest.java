@@ -27,11 +27,8 @@ import io.gravitee.definition.model.Api;
 import io.gravitee.definition.model.ExecutionMode;
 import io.gravitee.definition.model.Plan;
 import io.gravitee.policy.api.PolicyConfiguration;
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.observers.TestObserver;
 import io.vertx.rxjava3.core.http.HttpClient;
 import io.vertx.rxjava3.core.http.HttpClientRequest;
-import io.vertx.rxjava3.core.http.HttpClientResponse;
 import java.util.Collections;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,13 +38,7 @@ import org.junit.jupiter.api.Test;
  */
 @GatewayTest
 @DeployApi("/apis/keyless.json")
-public class KeylessPolicyIntegrationTest extends AbstractPolicyTest<KeylessPolicy, PolicyConfiguration> {
-
-    @Override
-    protected void configureGateway(GatewayConfigurationBuilder gatewayConfigurationBuilder) {
-        super.configureGateway(gatewayConfigurationBuilder);
-        gatewayConfigurationBuilder.set("api.jupiterMode.enabled", "true");
-    }
+public class KeylessPolicyV4EmulationIntegrationTest extends AbstractPolicyTest<KeylessPolicy, PolicyConfiguration> {
 
     /**
      * Override api plans to have a published KEY_LESS one.
@@ -61,7 +52,6 @@ public class KeylessPolicyIntegrationTest extends AbstractPolicyTest<KeylessPoli
         keylessPlan.setSecurity("KEY_LESS");
         keylessPlan.setStatus("PUBLISHED");
         api.setPlans(Collections.singletonList(keylessPlan));
-        api.setExecutionMode(ExecutionMode.JUPITER);
     }
 
     @Test
@@ -72,21 +62,17 @@ public class KeylessPolicyIntegrationTest extends AbstractPolicyTest<KeylessPoli
         client
             .rxRequest(GET, "/test")
             .flatMap(HttpClientRequest::rxSend)
-            .flatMapPublisher(
-                response -> {
-                    assertThat(response.statusCode()).isEqualTo(200);
-                    return response.toFlowable();
-                }
-            )
+            .flatMapPublisher(response -> {
+                assertThat(response.statusCode()).isEqualTo(200);
+                return response.toFlowable();
+            })
             .test()
             .await()
             .assertComplete()
-            .assertValue(
-                body -> {
-                    assertThat(body.toString()).isEqualTo("response from backend");
-                    return true;
-                }
-            );
+            .assertValue(body -> {
+                assertThat(body).hasToString("response from backend");
+                return true;
+            });
 
         wiremock.verify(1, getRequestedFor(urlPathEqualTo("/team")));
     }
