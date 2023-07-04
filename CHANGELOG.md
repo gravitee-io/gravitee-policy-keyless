@@ -1,3 +1,15 @@
+# [3.0.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.2.0...3.0.0-alpha.1) (2023-07-04)
+
+
+### chore
+
+* bump dependencies versions ([e9e236f](https://github.com/gravitee-io/gravitee-policy-keyless/commit/e9e236f3d00fa4bf760b604238f553fb434ecd0e))
+
+
+### BREAKING CHANGES
+
+* use apim version 4
+
 # [2.2.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.1.0...2.2.0) (2023-05-29)
 
 
