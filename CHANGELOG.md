@@ -1,3 +1,10 @@
+# [3.0.0-alpha.2](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.0-alpha.1...3.0.0-alpha.2) (2023-07-06)
+
+
+### Bug Fixes
+
+* bump gateway-api version ([1afc199](https://github.com/gravitee-io/gravitee-policy-keyless/commit/1afc19984ceafa918b0258210ba87e3415629b81))
+
 # [3.0.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.2.0...3.0.0-alpha.1) (2023-07-04)
 
 
