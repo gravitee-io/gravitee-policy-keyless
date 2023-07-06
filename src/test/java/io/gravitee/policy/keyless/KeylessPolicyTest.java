@@ -95,7 +95,19 @@ class KeylessPolicyTest {
     @EnumSource(value = SecurityToken.TokenType.class, names = { "CLIENT_ID", "API_KEY" })
     @DisplayName("Should return an empty Maybe if there was a SecurityToken extracted by the previous plan")
     void shouldReturnAnEmptyWhenExtractingSecurityToken(SecurityToken.TokenType type) {
-        when(ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN)).thenReturn(new SecurityToken(type, "tokenValue"));
+        when(ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN))
+            .thenReturn(SecurityToken.builder().tokenType(type.name()).tokenValue("tokenValue").build());
+        final TestObserver<SecurityToken> obs = cut.extractSecurityToken(ctx).test();
+
+        obs.assertNoValues();
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = SecurityToken.TokenType.class, names = { "CLIENT_ID", "API_KEY" })
+    @DisplayName("Should return an empty Maybe if there was an invalid SecurityToken extracted by the previous plan")
+    void shouldReturnAnEmptyWhenExtractingInvalidSecurityToken(SecurityToken.TokenType type) {
+        when(ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN))
+            .thenReturn(SecurityToken.builder().tokenType(type.name()).invalid(true).build());
         final TestObserver<SecurityToken> obs = cut.extractSecurityToken(ctx).test();
 
         obs.assertNoValues();
