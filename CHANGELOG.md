@@ -1,3 +1,22 @@
+# [3.0.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.2.0...3.0.0) (2023-07-18)
+
+
+### Bug Fixes
+
+* bump gateway-api version ([1afc199](https://github.com/gravitee-io/gravitee-policy-keyless/commit/1afc19984ceafa918b0258210ba87e3415629b81))
+
+
+### chore
+
+* bump dependencies versions ([e9e236f](https://github.com/gravitee-io/gravitee-policy-keyless/commit/e9e236f3d00fa4bf760b604238f553fb434ecd0e))
+* **deps:** update gravitee-parent ([23de637](https://github.com/gravitee-io/gravitee-policy-keyless/commit/23de6372da39adfc465ee558c4dc1702ab8844dc))
+
+
+### BREAKING CHANGES
+
+* **deps:** require Java17
+* use apim version 4
+
 # [3.0.0-alpha.2](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.0-alpha.1...3.0.0-alpha.2) (2023-07-06)
 
 
