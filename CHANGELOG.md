@@ -1,3 +1,15 @@
+# [3.0.0-alpha.3](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.0-alpha.2...3.0.0-alpha.3) (2023-07-18)
+
+
+### chore
+
+* **deps:** update gravitee-parent ([23de637](https://github.com/gravitee-io/gravitee-policy-keyless/commit/23de6372da39adfc465ee558c4dc1702ab8844dc))
+
+
+### BREAKING CHANGES
+
+* **deps:** require Java17
+
 # [3.0.0-alpha.2](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.0-alpha.1...3.0.0-alpha.2) (2023-07-06)
 
 
