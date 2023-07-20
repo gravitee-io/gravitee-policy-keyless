@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.0...3.0.1) (2023-07-20)
+
+
+### Bug Fixes
+
+* update policy description ([363edb1](https://github.com/gravitee-io/gravitee-policy-keyless/commit/363edb159ca2218cb29a3c4864e219a5a7fcaf3c))
+
 # [3.0.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/2.2.0...3.0.0) (2023-07-18)
 
 
