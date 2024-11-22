@@ -18,11 +18,12 @@ package io.gravitee.policy.keyless;
 import static io.gravitee.gateway.reactive.api.context.InternalContextAttributes.ATTR_INTERNAL_SECURITY_TOKEN;
 
 import io.gravitee.gateway.reactive.api.context.ContextAttributes;
-import io.gravitee.gateway.reactive.api.context.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
 import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
-import io.gravitee.gateway.reactive.api.policy.SecurityPolicy;
+import io.gravitee.gateway.reactive.api.context.kafka.KafkaConnectionContext;
 import io.gravitee.gateway.reactive.api.policy.SecurityToken;
 import io.gravitee.gateway.reactive.api.policy.http.HttpSecurityPolicy;
+import io.gravitee.gateway.reactive.api.policy.kafka.KafkaSecurityPolicy;
 import io.gravitee.policy.v3.keyless.KeylessPolicyV3;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
@@ -31,7 +32,7 @@ import io.reactivex.rxjava3.core.Maybe;
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public class KeylessPolicy extends KeylessPolicyV3 implements HttpSecurityPolicy {
+public class KeylessPolicy extends KeylessPolicyV3 implements HttpSecurityPolicy, KafkaSecurityPolicy {
 
     @Override
     public String id() {
@@ -50,6 +51,15 @@ public class KeylessPolicy extends KeylessPolicyV3 implements HttpSecurityPolicy
 
     @Override
     public Maybe<SecurityToken> extractSecurityToken(HttpPlainExecutionContext ctx) {
+        return getSecurityTokenFromContext(ctx);
+    }
+
+    @Override
+    public Maybe<SecurityToken> extractSecurityToken(KafkaConnectionContext ctx) {
+        return getSecurityTokenFromContext(ctx);
+    }
+
+    private Maybe<SecurityToken> getSecurityTokenFromContext(BaseExecutionContext ctx) {
         // This token is present in internal attributes if a previous SecurityPolicy has extracted a SecurityToken
         final SecurityToken securityToken = ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN);
         // If it is present with a type different from NONE, then we should not execute this KeylessPlan.
@@ -64,10 +74,15 @@ public class KeylessPolicy extends KeylessPolicyV3 implements HttpSecurityPolicy
         return handleSecurity(ctx);
     }
 
-    private Completable handleSecurity(final HttpPlainExecutionContext ctx) {
+    @Override
+    public Completable authenticate(KafkaConnectionContext ctx) {
+        return handleSecurity(ctx);
+    }
+
+    private Completable handleSecurity(final BaseExecutionContext ctx) {
         return Completable.fromRunnable(() -> {
             ctx.setAttribute(ContextAttributes.ATTR_APPLICATION, APPLICATION_NAME_ANONYMOUS);
-            ctx.setAttribute(ContextAttributes.ATTR_SUBSCRIPTION_ID, ctx.request().remoteAddress());
+            ctx.setAttribute(ContextAttributes.ATTR_SUBSCRIPTION_ID, ctx.remoteAddress());
         });
     }
 }
