@@ -19,8 +19,10 @@ import static io.gravitee.gateway.reactive.api.context.InternalContextAttributes
 
 import io.gravitee.gateway.reactive.api.context.ContextAttributes;
 import io.gravitee.gateway.reactive.api.context.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
 import io.gravitee.gateway.reactive.api.policy.SecurityPolicy;
 import io.gravitee.gateway.reactive.api.policy.SecurityToken;
+import io.gravitee.gateway.reactive.api.policy.http.HttpSecurityPolicy;
 import io.gravitee.policy.v3.keyless.KeylessPolicyV3;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
@@ -29,7 +31,7 @@ import io.reactivex.rxjava3.core.Maybe;
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
+public class KeylessPolicy extends KeylessPolicyV3 implements HttpSecurityPolicy {
 
     @Override
     public String id() {
@@ -47,7 +49,7 @@ public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
     }
 
     @Override
-    public Maybe<SecurityToken> extractSecurityToken(HttpExecutionContext ctx) {
+    public Maybe<SecurityToken> extractSecurityToken(HttpPlainExecutionContext ctx) {
         // This token is present in internal attributes if a previous SecurityPolicy has extracted a SecurityToken
         final SecurityToken securityToken = ctx.getInternalAttribute(ATTR_INTERNAL_SECURITY_TOKEN);
         // If it is present with a type different from NONE, then we should not execute this KeylessPlan.
@@ -58,11 +60,11 @@ public class KeylessPolicy extends KeylessPolicyV3 implements SecurityPolicy {
     }
 
     @Override
-    public Completable onRequest(HttpExecutionContext ctx) {
+    public Completable onRequest(HttpPlainExecutionContext ctx) {
         return handleSecurity(ctx);
     }
 
-    private Completable handleSecurity(final HttpExecutionContext ctx) {
+    private Completable handleSecurity(final HttpPlainExecutionContext ctx) {
         return Completable.fromRunnable(() -> {
             ctx.setAttribute(ContextAttributes.ATTR_APPLICATION, APPLICATION_NAME_ANONYMOUS);
             ctx.setAttribute(ContextAttributes.ATTR_SUBSCRIPTION_ID, ctx.request().remoteAddress());

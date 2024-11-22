@@ -26,6 +26,8 @@ import static org.mockito.Mockito.when;
 import io.gravitee.gateway.reactive.api.context.ContextAttributes;
 import io.gravitee.gateway.reactive.api.context.HttpExecutionContext;
 import io.gravitee.gateway.reactive.api.context.Request;
+import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
+import io.gravitee.gateway.reactive.api.context.http.HttpRequest;
 import io.gravitee.gateway.reactive.api.policy.SecurityToken;
 import io.reactivex.rxjava3.observers.TestObserver;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,10 +49,10 @@ class KeylessPolicyTest {
     protected static final String REMOTE_ADDRESS = "remoteAddress";
 
     @Mock
-    private Request request;
+    private HttpRequest request;
 
     @Mock
-    private HttpExecutionContext ctx;
+    private HttpPlainExecutionContext ctx;
 
     private KeylessPolicy cut;
 
