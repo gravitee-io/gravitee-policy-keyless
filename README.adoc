@@ -34,7 +34,8 @@ It sets multiple attributes during policy execution, as follows:
 |Plugin version | APIM version
 
 |1.x            | Up to 3.20
-|3.x            | 4.0 to latest
+|3.x            | 4.0 to 4.5
+|4.x            | 4.6 to latest
 
 |===
 
