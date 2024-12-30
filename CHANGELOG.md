@@ -1,3 +1,10 @@
+# [4.0.0-alpha.2](https://github.com/gravitee-io/gravitee-policy-keyless/compare/4.0.0-alpha.1...4.0.0-alpha.2) (2024-12-30)
+
+
+### Bug Fixes
+
+* **deps:** bump apim version ([fcc0cd4](https://github.com/gravitee-io/gravitee-policy-keyless/commit/fcc0cd4638763b213fda2b98b3b1592cc8b7385b))
+
 # [4.0.0-alpha.1](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.1...4.0.0-alpha.1) (2024-11-22)
 
 
