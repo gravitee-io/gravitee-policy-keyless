@@ -1,3 +1,25 @@
+# [4.0.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.1...4.0.0) (2024-12-30)
+
+
+### Bug Fixes
+
+* **deps:** bump apim version ([fcc0cd4](https://github.com/gravitee-io/gravitee-policy-keyless/commit/fcc0cd4638763b213fda2b98b3b1592cc8b7385b))
+
+
+### Code Refactoring
+
+* use new HttpSecurityPolicy and BaseExecutionContext interface ([464cd33](https://github.com/gravitee-io/gravitee-policy-keyless/commit/464cd333d286562cda43fc78ffb3df14a01e48b5))
+
+
+### Features
+
+* implement kafka security policy ([94e1d1a](https://github.com/gravitee-io/gravitee-policy-keyless/commit/94e1d1aa0c9091025776d3f4d4e406544229aa4f))
+
+
+### BREAKING CHANGES
+
+* requires APIM 4.6+
+
 # [4.0.0-alpha.2](https://github.com/gravitee-io/gravitee-policy-keyless/compare/4.0.0-alpha.1...4.0.0-alpha.2) (2024-12-30)
 
 
