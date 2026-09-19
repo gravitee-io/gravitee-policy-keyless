@@ -31,12 +31,12 @@ It sets multiple attributes during policy execution, as follows:
 == Compatibility matrix
 
 |===
-|Plugin version | APIM version
+| Plugin version | APIM            | Java version
 
-|1.x            | Up to 3.20
-|3.x            | 4.0 to 4.5
-|4.x            | 4.6 to latest
-
+| 5.x            | 4.7.x to latest | 21
+| 4.x            | 4.6 to latest   | 17
+| 3.x            | 4.0 to 4.5      | 17
+| 1.x            | Up to 3.20      | 11
 |===
 
 == Errors
