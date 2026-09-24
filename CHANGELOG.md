@@ -1,3 +1,16 @@
+# [5.0.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/4.0.0...5.0.0) (2026-09-24)
+
+
+* chore(deps)!: move to the gravitee orb 5 and parent 23 ([02b7fa8](https://github.com/gravitee-io/gravitee-policy-keyless/commit/02b7fa8e011f8ec4f2d01162f88f643a25d19105))
+
+
+### BREAKING CHANGES
+
+* the artifact is now compiled for Java 21, up from Java 17, and
+requires a Java 21 runtime or later.
+
+https://gravitee.atlassian.net/browse/BX-403
+
 # [4.0.0](https://github.com/gravitee-io/gravitee-policy-keyless/compare/3.0.1...4.0.0) (2024-12-30)
 
 
